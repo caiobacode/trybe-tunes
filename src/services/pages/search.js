@@ -1,10 +1,18 @@
 import React from 'react';
 import Header from '../../components/Header';
+import Carregando from './carregando';
+import searchAlbumsAPI from '../searchAlbumsAPI';
+import Lint from './Lint';
 
 class Search extends React.Component {
   state = {
     artist: '',
     searchButton: true,
+    loading: false,
+    ovo: false,
+    ovo2: false,
+    selected: '',
+    album: [],
   };
 
   disabled = () => {
@@ -25,8 +33,31 @@ class Search extends React.Component {
     });
   };
 
+  Click = async () => {
+    const { artist } = this.state;
+    this.setState({
+      loading: true,
+      artist: '',
+      selected: artist,
+      album: [],
+    }, async () => {
+      const { selected } = this.state;
+      const sla = await searchAlbumsAPI(selected);
+      await this.setState({ album: sla }, () => {
+        const { album } = this.state;
+        if (album.length !== 0) {
+          this.setState({ ovo: true,
+            loading: false });
+        } else {
+          this.setState({ ovo2: true,
+            loading: false });
+        }
+      });
+    });
+  };
+
   render() {
-    const { searchButton, artist } = this.state;
+    const { searchButton, artist, loading, ovo, ovo2, selected, album } = this.state;
     return (
       <div>
         <div data-testid="page-search">
@@ -34,6 +65,7 @@ class Search extends React.Component {
           <input
             data-testid="search-artist-input"
             value={ artist }
+            type="text"
             name="artist"
             onChange={ this.handleChange }
           />
@@ -41,9 +73,20 @@ class Search extends React.Component {
             type="button"
             data-testid="search-artist-button"
             disabled={ searchButton }
+            onClick={ this.Click }
           >
             Pesquisar
           </button>
+          {
+            loading && <Carregando />
+          }
+          {
+            ovo && <Lint selec={ selected } alb={ album } />
+          }
+          {
+            ovo2
+              && <h1>Nenhum álbum foi encontrado</h1>
+          }
         </div>
       </div>
     );
