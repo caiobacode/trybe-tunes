@@ -1,9 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Carregando from './carregando';
+import { addSong } from '../favoriteSongsAPI';
 
 class MusicCard extends React.Component {
+  state = {
+    loading: false,
+    check: false,
+  };
+
+  Click = (song) => {
+    this.setState({
+      loading: true,
+      check: true }, async () => {
+      await addSong(song);
+      this.setState({ loading: false });
+    });
+  };
+
   render() {
-    const { musicName, previewUrl } = this.props;
+    const { musicName, previewUrl, trackId, thisSong } = this.props;
+    const { loading, check } = this.state;
     return (
       <div>
         <h4>{musicName}</h4>
@@ -15,6 +32,19 @@ class MusicCard extends React.Component {
           <code>audio</code>
           .
         </audio>
+        <label htmlFor="favorite">
+          <input
+            type="checkbox"
+            name="favorite"
+            data-testid={ `checkbox-music-${trackId}` }
+            onClick={ () => this.Click(thisSong) }
+            checked={ !!check }
+          />
+          Favorita
+        </label>
+        {
+          loading && <Carregando />
+        }
       </div>
     );
   }
@@ -23,6 +53,8 @@ class MusicCard extends React.Component {
 MusicCard.propTypes = {
   musicName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
+  trackId: PropTypes.string.isRequired,
+  thisSong: PropTypes.objectOf.isRequired,
 };
 
 export default MusicCard;
