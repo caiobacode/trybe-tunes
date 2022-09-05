@@ -15,16 +15,20 @@ class Lint extends React.Component {
         {alb.map((e) => {
           const elink = `/album/${e.collectionId}`;
           return (
-            <div key={ e.artistName }>
+            <div key={ e.collectionName }>
               <h2>
                 Album
+                {' '}
                 {e.collectionName}
               </h2>
               <h3>{e.artistName}</h3>
               <Link
                 data-testid={ `link-to-album-${e.collectionId}` }
                 to={ elink }
-              />
+                value="aaaa"
+              >
+                Clique Aqui
+              </Link>
             </div>
           );
         })}
