@@ -9,6 +9,15 @@ class MusicCard extends React.Component {
     check: false,
   };
 
+  componentDidMount() {
+    const { thisSong, favoriteTrack } = this.props;
+    favoriteTrack.forEach((e) => {
+      if (e.trackName === thisSong.trackName) {
+        this.setState({ check: true });
+      }
+    });
+  }
+
   Click = (song) => {
     this.setState({
       loading: true,
@@ -38,7 +47,7 @@ class MusicCard extends React.Component {
             name="favorite"
             data-testid={ `checkbox-music-${trackId}` }
             onClick={ () => this.Click(thisSong) }
-            checked={ !!check }
+            checked={ check }
           />
           Favorita
         </label>
@@ -55,6 +64,7 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.string.isRequired,
   thisSong: PropTypes.objectOf.isRequired,
+  favoriteTrack: PropTypes.arrayOf.isRequired,
 };
 
 export default MusicCard;
