@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carregando from './carregando';
-import { addSong } from '../favoriteSongsAPI';
+import { addSong, removeSong } from '../favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   state = {
@@ -11,20 +11,34 @@ class MusicCard extends React.Component {
 
   componentDidMount() {
     const { thisSong, favoriteTrack } = this.props;
-    favoriteTrack.forEach((e) => {
+    favoriteTrack?.forEach((e) => {
       if (e.trackName === thisSong.trackName) {
         this.setState({ check: true });
       }
     });
   }
 
-  Click = (song) => {
-    this.setState({
-      loading: true,
-      check: true }, async () => {
-      await addSong(song);
-      this.setState({ loading: false });
-    });
+  handleClick = async (song) => {
+    const { check } = this.state;
+    const { handleDesfavorite } = this.props;
+    if (typeof handleDesfavorite !== 'undefined') {
+      handleDesfavorite(song);
+    }
+    if (check) {
+      this.setState({
+        loading: true,
+        check: false }, async () => {
+        await removeSong(song);
+        this.setState({ loading: false });
+      });
+    } else {
+      this.setState({
+        loading: true,
+        check: true }, async () => {
+        await addSong(song);
+        this.setState({ loading: false });
+      });
+    }
   };
 
   render() {
@@ -41,12 +55,12 @@ class MusicCard extends React.Component {
           <code>audio</code>
           .
         </audio>
-        <label htmlFor="favorite">
+        <label htmlFor={ trackId }>
           <input
             type="checkbox"
-            name="favorite"
+            id={ trackId }
             data-testid={ `checkbox-music-${trackId}` }
-            onClick={ () => this.Click(thisSong) }
+            onClick={ () => this.handleClick(thisSong) }
             checked={ check }
           />
           Favorita
@@ -60,6 +74,7 @@ class MusicCard extends React.Component {
 }
 
 MusicCard.propTypes = {
+  handleDesfavorite: PropTypes.func.isRequired,
   musicName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.string.isRequired,
