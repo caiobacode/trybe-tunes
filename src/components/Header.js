@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Carregando from '../services/pages/carregando';
+import Carregando from './Carregando';
 import { getUser } from '../services/userAPI';
 
 class Header extends React.Component {
