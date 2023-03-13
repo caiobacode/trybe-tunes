@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import Carregando from '../components/Carregando';
+import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Lint from '../components/SearchResults';
 
@@ -75,17 +75,17 @@ class Search extends React.Component {
             disabled={ searchButton }
             onClick={ this.Click }
           >
-            Pesquisar
+            Search
           </button>
           {
-            loading && <Carregando />
+            loading && <Loading />
           }
           {
             ovo && <Lint selec={ selected } alb={ album } />
           }
           {
             ovo2
-              && <h1>Nenhum álbum foi encontrado</h1>
+              && <h1>No album was found</h1>
           }
         </div>
       </div>

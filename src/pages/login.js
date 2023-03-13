@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
-import Carregando from '../components/Carregando';
+import Carregando from '../components/Loading';
 
 class Login extends React.Component {
   state = {
@@ -55,7 +55,7 @@ class Login extends React.Component {
           type="button"
           onClick={ this.Click }
         >
-          Entrar
+          Login
         </button>
         {
           loading && <Carregando />

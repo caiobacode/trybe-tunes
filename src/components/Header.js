@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Carregando from './Carregando';
 import { getUser } from '../services/userAPI';
+import Loading from './Loading';
 
 class Header extends React.Component {
   state = {
@@ -19,14 +19,14 @@ class Header extends React.Component {
     return (
       <header data-testid="header-component">
         <div>
-          { carregando ? <Carregando /> : (
+          { carregando ? <Loading /> : (
             <h1 className='headerName' data-testid="header-user-name">{user}</h1>
           )}
           <Link
             data-testid="link-to-search"
             to="/search"
             >
-            <button type='button'>Pesquisar</button>
+            <button type='button'>Search</button>
           </Link>
           <Link
             data-testid="link-to-favorites"

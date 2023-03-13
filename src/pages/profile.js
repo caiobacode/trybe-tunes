@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
-import Carregando from '../components/Carregando';
+import Loading from '../components/Loading';
 
 class Profile extends React.Component {
   state = {
@@ -24,7 +24,7 @@ class Profile extends React.Component {
       <div>
         <Header />
         {
-          loading ? <Carregando />
+          loading ? <Loading />
             : (
               <div data-testid="page-profile">
                 <img data-testid="profile-image" alt="profileImg" src={ user.image } />

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import Carregando from '../components/Carregando';
+import Loading from '../components/Loading';
 import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import MusicCard from '../components/MusicCard';
 
@@ -32,7 +32,7 @@ class Favorites extends React.Component {
       <div data-testid="page-favorites">
         <Header />
         {
-          loading ? <Carregando />
+          loading ? <Loading />
             : favoriteSongs?.map((music) => (
               <MusicCard
                 handleDesfavorite={ this.handleDesfavorite }

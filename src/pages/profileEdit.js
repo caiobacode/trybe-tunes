@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
-import Carregando from '../components/Carregando';
+import Loading from '../components/Loading';
 
 class ProfileEdit extends React.Component {
   state = {
@@ -67,7 +67,7 @@ class ProfileEdit extends React.Component {
       <div>
         <Header />
         {
-          loading ? <Carregando />
+          loading ? <Loading />
             : (
               <div data-testid="page-profile-edit">
                 <input
