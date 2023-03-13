@@ -29,7 +29,7 @@ class Album extends React.Component {
     return (
       <div data-testid="page-album">
         <Header />
-        <h2 name="artist-name" data-testid="artist-name">{artist}</h2>
+        <h2 className='artistName' name="artist-name" data-testid="artist-name">{artist}</h2>
         <h3 name="album-name" data-testid="album-name">{album}</h3>
         <div>
           { albumMusics.map((music) => (
