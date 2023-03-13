@@ -25,11 +25,15 @@ class Header extends React.Component {
           <Link
             data-testid="link-to-search"
             to="/search"
-          />
+            >
+            <button type='button'>Pesquisar</button>
+          </Link>
           <Link
             data-testid="link-to-favorites"
             to="/favorites"
-          />
+            >
+            <button type='button'>Favorites</button>
+          </Link>
           <Link
             data-testid="link-to-profile"
             to="/profile"

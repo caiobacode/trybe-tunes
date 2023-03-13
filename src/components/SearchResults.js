@@ -27,7 +27,7 @@ class Lint extends React.Component {
                 to={ elink }
                 value="aaaa"
               >
-                Clique Arbosta
+                Acess album
               </Link>
             </div>
           );
