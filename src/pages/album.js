@@ -30,7 +30,7 @@ class Album extends React.Component {
       <div data-testid="page-album">
         <Header />
         <h2 className='artistName' name="artist-name" data-testid="artist-name">{artist}</h2>
-        <h3 name="album-name" data-testid="album-name">{album}</h3>
+        <h3 name="nameAlbum" data-testid="album-name">{album}</h3>
         <div>
           { albumMusics.map((music) => (
             <MusicCard
