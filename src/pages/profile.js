@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../../components/Header';
-import { getUser } from '../userAPI';
-import Carregando from './carregando';
+import Header from '../components/Header';
+import { getUser } from '../services/userAPI';
+import Carregando from '../components/Carregando';
 
 class Profile extends React.Component {
   state = {

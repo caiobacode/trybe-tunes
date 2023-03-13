@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../components/Header';
-import getMusics from '../musicsAPI';
-import MusicCard from './musicCard';
-import { getFavoriteSongs } from '../favoriteSongsAPI';
+import Header from '../components/Header';
+import getMusics from '../services/musicsAPI';
+import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   state = {
@@ -29,8 +29,8 @@ class Album extends React.Component {
     return (
       <div data-testid="page-album">
         <Header />
-        <h2 name="artist-name" data-testid="artist-name">{artist}</h2>
-        <h3 name="album-name" data-testid="album-name">{album}</h3>
+        <h2 className='artistName' name="artist-name" data-testid="artist-name">{artist}</h2>
+        <h3 name="nameAlbum" data-testid="album-name">{album}</h3>
         <div>
           { albumMusics.map((music) => (
             <MusicCard

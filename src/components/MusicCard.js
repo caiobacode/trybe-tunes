@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carregando from './carregando';
-import { addSong, removeSong } from '../favoriteSongsAPI';
+import Carregando from './Carregando';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   state = {

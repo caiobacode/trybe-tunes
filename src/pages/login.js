@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { createUser } from '../userAPI';
-import Carregando from './carregando';
+import { createUser } from '../services/userAPI';
+import Carregando from '../components/Carregando';
 
 class Login extends React.Component {
   state = {
@@ -43,6 +43,7 @@ class Login extends React.Component {
       <div data-testid="page-login">
         <input
           data-testid="login-name-input"
+          className='name-input'
           type="text"
           name="login"
           value={ login }
